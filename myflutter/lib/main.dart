@@ -3,7 +3,7 @@
  * @Author: yangkexin
  * @Date: 2020-08-07 19:15:02
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-08-12 15:58:10
+ * @LastEditTime: 2020-08-12 16:06:36
  */
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart'; // 引入包
@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
   // 该应用程序继承了 StatelessWidget，这将会使应用本身也成为一个widget。 在Flutter中，大多数东西都是widget，包括对齐(alignment)、填充(padding)和布局(layout)
   @override
   Widget build(BuildContext context) {
-    final wordPair = new WordPair.random(); // 实例化wordPair
     return new MaterialApp(
       title: 'Welcome to Flutter',
       home: new Scaffold( 
@@ -29,10 +28,20 @@ class MyApp extends StatelessWidget {
           // Center widget又包含一个 Text 子widget。
           // Center widget可以将其子widget树对其到屏幕中心。
           
-          // child: new Text('Hello World'),
-          child: new Text(wordPair.asPascalCase),
+          child: new RandomWords(),
         ),
       ),
     );
   }
+}
+class RandomWordsState extends State<RandomWords> {
+  @override
+  Widget build(BuildContext context) {
+    final wordPair = new WordPair.random();
+    return new Text(wordPair.asPascalCase);
+  }
+}
+class RandomWords extends StatefulWidget {
+  @override
+  createState() => new RandomWordsState();
 }
